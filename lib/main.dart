@@ -9,6 +9,7 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   double? _numberForm;
+  String? _startMeasure;
   final List<String> _measures = [
     'meters',
     'kilometers',
@@ -42,7 +43,12 @@ class MyAppState extends State<MyApp> {
                       child: Text(value),
                     );
                   }).toList(),
-                  onChanged: (_) {},
+                  onChanged: (value) {
+                    setState(() {
+                      _startMeasure = value.toString();
+                    });
+                  },
+                  value: _startMeasure,
                 ),
                 TextField(onChanged: (text) {
                   var rv = double.tryParse(text);
