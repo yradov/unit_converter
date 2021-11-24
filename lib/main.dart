@@ -9,6 +9,16 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   double? _numberForm;
+  final List<String> _measures = [
+    'meters',
+    'kilometers',
+    'grams',
+    'kilograms',
+    'feet',
+    'miles',
+    'pounds (lbs)',
+    'ounces',
+  ];
 
   @override
   void initState() {
@@ -25,6 +35,15 @@ class MyAppState extends State<MyApp> {
           body: Center(
             child: Column(
               children: [
+                DropdownButton(
+                  items: _measures.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (_) {},
+                ),
                 TextField(onChanged: (text) {
                   var rv = double.tryParse(text);
                   //rv ??= 0;
